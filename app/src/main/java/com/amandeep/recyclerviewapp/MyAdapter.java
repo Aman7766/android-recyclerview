@@ -8,8 +8,15 @@ import android.view.ViewGroup;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+
 public class MyAdapter extends RecyclerView.Adapter<MyViewHolder> {
 
+    private ViewModel[] viewModel;
+
+    public MyAdapter(ViewModel[] viewModel)
+   {
+   this.viewModel=viewModel;
+   }
     @NonNull
     @Override
     public MyViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
@@ -28,11 +35,17 @@ public class MyAdapter extends RecyclerView.Adapter<MyViewHolder> {
     @Override
     public void onBindViewHolder(@NonNull MyViewHolder holder, int position) {
 
+       ViewModel viewModel1=viewModel[position];
+       holder.textView.setText(viewModel1.getData());
+       holder.imageView.setImageResource(viewModel1.getImage());
+
+
+
     }
 
     @Override
     public int getItemCount() {
-        return 0;
+        return viewModel.length;
     }
 
 
